@@ -19,9 +19,6 @@
 
     <div class="row">
 
-        <div class="col-8">
-            <button onclick="showModalBooks()" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
-        </div>
         <div class="col-4">
             <p class="display-6" id="userNameLabel"></p>
         </div>
@@ -31,32 +28,7 @@
 
     </main>
 
-
-    <div id="modalNotes" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Notes</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group" id="listOfNote">
-
-                    </ul>
-
-                </div>
-                <div class="modal-footer">
-
-                    <input type="text" class="w-50" placeholder="Add Note" id="inputNote">
-                    <input id="inputIdBook" type="hidden">
-                    <button type="button" onclick="addNote()" class="btn btn-primary">Add Note</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

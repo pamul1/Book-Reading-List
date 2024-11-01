@@ -15,13 +15,6 @@ const user = () => {
 
 }
 
-const getUserName = () => {
-
-    let username = window.localStorage.getItem('username')
-    userNameLabel.innerHTML = username
-
-}
-
 const showNotes = (id) => {
 
     modalNotes = new bootstrap.Modal(document.getElementById("modalNotes"))
@@ -51,7 +44,7 @@ const getBooks = async () => {
 
         for (let i = 0; i < body.length; i++) {
 
-            pageLayOut += `<div class="m-3" style="width: 400px;">
+            cardLayOut += `<div class="m-3" style="width: 400px;">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">${body[i].title}</h5>
@@ -63,7 +56,7 @@ const getBooks = async () => {
 
         }
 
-        bookReport.innerHTML = pageLayOut
+        bookReport.innerHTML = cardLayOut
 
     }
 }
@@ -187,4 +180,66 @@ const postBook = async () => {
         let body = await response.json()
         console.log(body)
     }
+}
+
+const createNote = async () => {
+
+  
+
+    let id = inputIdComment.value
+    let name = window.localStorage.getItem("username")
+    let note = inputNote.value
+    let today = new Date()
+    let date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`
+    
+    let commentObject = {
+        name, 
+        note, 
+        date
+    }
+
+
+    let url = `${baseURL}?id=eq.${id}`
+
+    let responseComments = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'apikey': token,
+            'Authorization': token
+        }
+    })
+
+    if (responseNotes.ok) {
+
+        let bodyNotes = await responseNotes.json()
+        let post = bodyNotes[0]
+
+
+        post.notes.push(noteObject)
+
+        let response = await fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'apikey': token,
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(post)
+        })
+
+        if (response.ok) {
+            getAllPosts() 
+            noteModal.hide()
+            showNotesModal(id)
+            inputNote.value = ""
+        } else {
+            console.log("Note wasn´t added")
+        }
+
+
+
+    } else {
+        console.log(`Post with id: ${id} is not getting returned from supabase`)
+    }
+
 }
