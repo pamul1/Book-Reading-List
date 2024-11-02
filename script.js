@@ -5,7 +5,7 @@ let endPoint = `https://uunoyalmreaywqwsrymh.supabase.co/rest/v1/book_reading_li
 let modalNotes
 let modalBooks
 
-let commentsBooks = []
+let notessBooks = []
 
 const user = () => {
     event.preventDefault()
@@ -16,6 +16,8 @@ const user = () => {
 }
 
 const showNotes = (id) => {
+
+    event.preventDefault()
 
     modalNotes = new bootstrap.Modal(document.getElementById("modalNotes"))
     modalNotes.show()
@@ -83,32 +85,34 @@ const getNotes = async (id) => {
 
         let listItemLayOut = ``
 
-        for (let i = 0; i < comments.length; i++) {
+        for (let i = 0; i < notes.length; i++) {
 
             listItemLayOut += `<li class="list-group-item">${notes[i].user}: ${notes[i].text} </li>`
 
         }
 
-        listOfNotes.innerHTML = listItemLayOut
+        getNotes.innerHTML = listItemLayOut
         notesBook = notes
     }
 }
 
 const addNote = async () => {
 
-    let id = inputIdBook.value
-    let text = inputNote.value
-    let user = window.localStorage.getItem('username')
+    event.preventDefault()
 
-    let note = {
+    let id = inputId1.value
+    let text = inputNote1.value
+    let user = inputUser1.value
+
+    let notes = {
         text,
         user
     }
 
-    notesBook.push(note)
+    //notesBook.push(note)
 
     let updateInfo = {
-        note: notesBook
+        notes
     }
 
 
@@ -184,24 +188,22 @@ const postBook = async () => {
 
 const createNote = async () => {
 
-  
-
-    let id = inputIdComment.value
+    let id = inputIdNote.value
     let name = window.localStorage.getItem("username")
     let note = inputNote.value
     let today = new Date()
-    let date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`
-    
-    let commentObject = {
-        name, 
-        note, 
+    let date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
+
+    let noteObject = {
+        name,
+        note,
         date
     }
 
 
     let url = `${baseURL}?id=eq.${id}`
 
-    let responseComments = await fetch(url, {
+    let responseNotes = await fetch(url, {
         method: 'GET',
         headers: {
             'apikey': token,
@@ -228,7 +230,7 @@ const createNote = async () => {
         })
 
         if (response.ok) {
-            getAllPosts() 
+            getAllPosts()
             noteModal.hide()
             showNotesModal(id)
             inputNote.value = ""
@@ -241,5 +243,28 @@ const createNote = async () => {
     } else {
         console.log(`Post with id: ${id} is not getting returned from supabase`)
     }
+
+}
+
+function renderReportBooks(data) {
+
+    let tableLayout = ` <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        <tr>`
+
+    for (let i = 0; i < data.length; i++) {
+        tableLayout += ` <tr>
+                            <td>${data[i].title}</td>
+                            <td>${data[i].author}</td>
+                            <td>${data[i].status}</td>
+                            <td>${data[i].notes}</td>
+                        <tr> `
+
+    }
+
+    loadbooks.innerHTML = tableLayout
 
 }

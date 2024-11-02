@@ -15,16 +15,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body onload="onLoadBooks()">
+<body>
 
-    <div class="row">
+    <main class="container">
 
-        <div class="col-4">
-            <p class="display-6" id="userNameLabel"></p>
+    <form onsubmit="postBook()">
+        <div class="mb-3">
+            <label for="inputTitle" class="form-label">Title</label>
+            <input type="text" id="inputTitle" class="form-control" required>
         </div>
 
-    </div>
-    <main id="bookReport" class="d-flex flex-wrap justify-content-center">
+        <div class="mb-3">
+            <label for="inputAuthor" class="form-label">Author</label>
+            <input type="tel" id="inputAuthor" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="inputStatus" class="form-label">Status</label>
+            <select type="tel" id="inputStatus" class="form-control" required>
+                <option value="Completed">Completed</option>
+                <option value="To Read">To Read</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Add</button>
+
+    </form>
+
+    
 
     </main>
 

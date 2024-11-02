@@ -19,11 +19,32 @@
 
 <body>
 
-    <main class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="books.html">Books</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="notes.html">Notes</a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
 
-        <p class="display-3 text-center">Book Reading List</p>
-        <p id="labelUser"></p>
-
+    <main class="container mt-4"></main>
+    <h1>Book Reading List</h1>
+    <div class="mt-4">
         <form onsubmit="postBook()">
             <div class="mb-3">
                 <label for="inputTitle" class="form-label">Title</label>
@@ -35,21 +56,80 @@
                 <input type="tel" id="inputAuthor" class="form-control" required>
             </div>
 
-            <div class="mb-3">
-                <label for="inputStatus" class="form-label">Status</label>
-                <select type="tel" id="inputStatus" class="form-control" required>
-                    <option value="Completed">Completed</option>
-                    <option value="To Read">To Read</option>
+            <div class="mb-3"></div>
+                <label for="inputAvailability" class="form-label">Status</label>
+                <select type="tel" id="inputAvailability" class="form-control" required>
+                    <option value="True">Completed</option>
+                    <option value="False">To Read</option>
                 </select>
             </div>
 
+            <div class="mb-3">
+                <label for="inputNotes" class="form-label">Notes</label>
+                <input type="text" id="inputNotes" class="form-control" required>
+            </div>
+
+
             <button class="btn btn-primary" type="submit">Add</button>
-
         </form>
+    </div>
 
-        <div id="bookReport">
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered" id="reportBooks">
 
+        </table>
+    </div>
+
+    <div id="bookModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form>
+                        <div class="mb-3">
+                            <label for="inputId" class="form-label">Id</label>
+                            <input type="text" id="inputId" class="form-control" required disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="inputTitle" class="form-label">Title2</label>
+                            <input type="text" id="inputTitle" class="form-control" required>
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="inputAuthor" class="form-label">Author2</label>
+                            <input type="tel" id="inputAuthor" class="form-control" required>
+                        </div>
+            
+                        <div class="mb-3"></div>
+                            <label for="inputAvailability" class="form-label">Status2</label>
+                            <select type="tel" id="inputAvailability" class="form-control" required>
+                                <option value="True">Completed</option>
+                                <option value="False">To Read</option>
+                            </select>
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="inputNotes" class="form-label">Notes2</label>
+                            <input type="text" id="inputNotes" class="form-control" required>
+                        </div>
+                    </form>
+
+                    <div class="table-responsive mt-4">
+                        <table class="table table-bordered" id="listBooks"></table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="patchBook()">Save book</button>
+                </div>
+            </div>
         </div>
+    </div>
 
     </main>
 

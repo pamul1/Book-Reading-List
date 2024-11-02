@@ -16,7 +16,7 @@
 
 </head>
 
-<body onload="loadBooks()">
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -29,50 +29,34 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                     </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Status
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">To Read</a></li>
-                            <li><a class="dropdown-item" href="#">Reading</a></li>
-                            <li><a class="dropdown-item" href="#">Completed</a></li>
-                        </ul>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="books.html">Books</a>
+                    </li>
+
+                    <li class="nav-item"></li>
+                        <a class="nav-link active" aria-current="page" href="notes.html">Notes</a>
                     </li>
                     
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+               
             </div>
         </div>
     </nav>
 
     <main class="container">
 
-        <div class="row">
-
-            <div class="col-8">
-                <p class="display-1">Notes</p>
-            </div>
-            <div class="col-4">
-                <p id="userNameNote"></p>
-                <button onclick="showNoteModal()" class="btn btn-primary mb-2">Add Note</button>
-            </div>
-        </div>
-
-        <div id="note">
-
-        </div>
-        <form>
+        <form onsubmit="addNote()">
             <div class="mb-3">
                 <label for="inputId1" class="form-label"></label>
                 <input type="text" class="form-control" id="inputId1">
+            </div>
+
+            <div class="mb-3"></div>
+                <label for="inputUser1" class="form-label"></label>
+                <input type="text" class="form-control" id="inputUser1">
             </div>
 
             <div class="mb-3">
@@ -81,12 +65,7 @@
                 <div id="addNote" class="form-text">This book is amazing</div>
             </div>
 
-            <div class="modal-footer">
-                <input type="text" id="inputNote" placeholder="Add Note">
-                <input type="hidden" id="inputIdNote">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                <button type="button" onclick="createNote2()" class="btn btn-second">Send</button>
-            </div>
+            <button type="submit" class="btn btn-primary w-100" >Add Note</button>
 
         </form>
 
